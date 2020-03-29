@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Destinations</title>
+        <style>
+            
+        </style>
+    </head>
+
+    <body> 
+
+        <a href="/destinations/add">Ajouter une destination</a>
+        <h1>Liste des destinations</h1>
+        <ul> 
+            <% for(let i = 0; i < destinations.length; i++) { %>
+            <li><%= destinations[i].agencyname %> <%= destinations[i].country %> <%= destinations[i].city %>  <%= destinations[i].days %> <br>
+                <a href="/destinations/update/ <%= destinations[i].idDestination %>">Modifier</a>
+                <a href="/destinations/delete/ <%= destinations[i].idDestinations %>">Supprimer</a>
+            </li>
+            <% } %>
+        </ul>        
+    </body>
+
+    <footer></footer>
+</html>
