@@ -1,6 +1,7 @@
 let express = require('express'); // Instanciation des dépendances// Call express
 let app = express();// Instanciation du serveur express
 
+//Tableau de login
 const users = [
     {username:"Ahmed", password:"100moitérien"},
     {username:"Vicky", password:"toto"},
