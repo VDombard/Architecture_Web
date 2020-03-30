@@ -9,20 +9,20 @@ var destinationApiController = require('./controllers/destinationApiCOntroller')
 router.get('/', (req, res) => res.redirect('/login'));
 
 router.get('/login', loginController.renderLoginPage);
-router.get('/api/authorization', loginController.authentificationAPI)
+
 
 //Routes dédiées au domaine <Destination>
 router.get('/destinations', destinationController.getDestination);
 router.get('/destinations/add', destinationController.addDestination);
 router.post('/destinations/new', destinationController.newDestination);
-router.get('/destinations/update/:idDestination', destinationController.editDestination);
-router.get('/destinations/delete/:idDestination', destinationController.deleteDestination);
+router.get('/destinations/update/:ID_Destination', destinationController.editDestination);
+router.get('/destinations/delete/:ID_Destination', destinationController.deleteDestination);
 
 // Routes dédiées au domaine <API Destination>
-router.get('api/destination', destinationApiController.getDestination);
-router.post('api/destination', destinationApiController.newDestination);
-router.put('api/destination/:idDestination', destinationApiController.editDestination);
-router.delete('api/destination/:idDestination', destinationApiController.deleteDestination);
+router.get('/api/destination', destinationApiController.getDestination);
+router.post('/api/destination', destinationApiController.newDestination);
+router.put('/api/destination/:ID_Destination', destinationApiController.editDestination);
+router.delete('/api/destination/:ID_Destination', destinationApiController.deleteDestination);
 
 
 module.exports = router;

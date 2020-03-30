@@ -1,6 +1,6 @@
 let express = require('express'); // Instanciation des dépendances// Call express
 let app = express();// Instanciation du serveur express
-let path = require('path');
+
 
 //Configure bodyparser to handle POST requests
 let bodyParser = require('body-parser');
@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 //Déclaration session
 let session = require('express-session');
 
-let user = (username='admin', password= '1234');
+let user = (username='', password= '');
 let users = [];
 users.push(user);
 

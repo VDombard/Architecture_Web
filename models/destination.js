@@ -1,10 +1,8 @@
 class Destination {
-    agencyname = "";
     country ="";
     city = "";
     days = "";
-    constructor(agencyname, country, city, days) {
-        this.agencyname = agencyname;
+    constructor(country, city, days) {
         this.country = country;
         this.city = city;
         this.days = days;

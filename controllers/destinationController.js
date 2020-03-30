@@ -22,19 +22,20 @@ exports.getDestination = function(req, res) {
 
 //Ajouter une destination
 exports.addDestination = function(req, res) {
-    res.render('destinationsAdd.ejs', {idDestination:'-1', agencyname:"", country:"", city:"", days:""});
+    res.render('destinationsAdd.ejs', {ID_Destination:'-1', ID_Agency:"", country:"", city:"", days:""});
 }
 
 //Nouvelle destination
 exports.newDestination = function(req, res) {
-    let agencyname = req.body.agencyname;
+    let ID_Destination = req.body.ID_Destination;
+    let ID_Agency = req.body.ID_Agency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
     
-    let destinations = new Destination(agencyname, country, city, days);
+    let destinations = new Destination(ID_Destination, ID_Agency, country, city, days);
     console.log(destinations);
-    connection.query("INSERT INTO user set ?", user, function (error, resultSQL) {
+    connection.query("INSERT INTO users.destination set ?", destinations, function (error, resultSQL) {
         if(error) {
             res.status(404).send(error);
         }
@@ -46,15 +47,15 @@ exports.newDestination = function(req, res) {
 
 //Modifier une destination de la liste
 exports.editDestination = function(req, res) {
-    let idDestination = req.params.idDestination
-    let agencyname = req.body.agencyname;
+    let ID_Destination = req.params.ID_Destination
+    let ID_Agency = req.body.ID_Agency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
 
-    let destinations = new Destination(agencyname, country, city, days);
+    let destinations = new Destination(ID_Agency, country, city, days);
     console.log(destinations);
-    connection.query("UPDATE users.destination SET ? WHERE idDestination = ?", [destinations, idDestination], function (error, resultSQL) {
+    connection.query("UPDATE users.destination SET ? WHERE ID_Destination = ?", [destinations, ID_Destination], function (error, resultSQL) {
         if(error) {
             res.status(404).send(error);
         }
@@ -64,10 +65,10 @@ exports.editDestination = function(req, res) {
     });
 }
 
-// Supprime une destination suivant un id donné
+// Supprimer une destination suivant un id donné
 exports.deleteDestination = function(req, res) {
-    let sql = "DELETE FROM `destinations` WHERE `destination`.`idDestination` = ?";
-    connection.query(sql, [req.params.idDestination], (error, resultSQL) => {
+    let sql = "DELETE FROM users.destination WHERE destination.ID_Destination = ?"
+    connection.query(sql, [req.params.ID_Destination], (error, resultSQL) => {
         if(error) {
             res.status(404).send(error); 
         }

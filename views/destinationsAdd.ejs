@@ -10,14 +10,16 @@
     <body>
         <h1>Ajouter une destination</h1>
         <form action="/destinations/new" method="POST">
-            Nom agence:
-            <input type="text" name="agencyname" value="<%= agencyname %>" ><br>
+            <!--ID_Destination -->
+            <!-- <input type="hidden" name=""> -->
+            Numéro agence:
+            <input type="number" name="ID_Agency" value="<%= ID_Agency %>" ><br>
             Pays:
             <input type="text" name="country" value="<%= country %>"><br>
             Ville:
             <input type="text" name="city" value="<%= city %>"><br>
             Jours:
-            <input type="text" name="days" value="<%= days %>"><br>
+            <input type="number" name="days" value="<%= days %>"><br>
 
             <input type="submit" name="validate" value="Valider"><br>
             <input type="submit" value="Retour à la liste" formaction="/destinations">
