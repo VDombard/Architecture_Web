@@ -9,11 +9,11 @@ let getDestination = []; //--> 'getDestinations' ou 'destinations'
 exports.getDestination = function(req, res) {
     connection.query("SELECT * FROM users.destination", function (error, resultSQL) {
         if (error) {
-            res.status(404).send(error);//--> 400 ou 404 ??
+            res.status(404).send(error);
         }
         else {
             res.status(200);
-            getDestination = resultSQL; //--> Mettre 'destinations' ou 'getdestination'?
+            getDestination = resultSQL;
             console.log(getDestination);
             res.render('./destinations.ejs', {destinations: getDestination});  
         }  
@@ -27,13 +27,11 @@ exports.addDestination = function(req, res) {
 
 //Nouvelle destination
 exports.newDestination = function(req, res) {
-    let ID_Destination = req.body.ID_Destination;
-    let ID_Agency = req.body.ID_Agency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
     
-    let destinations = new Destination(ID_Destination, ID_Agency, country, city, days);
+    let destinations = new Destination(country, city, days);
     console.log(destinations);
     connection.query("INSERT INTO users.destination set ?", destinations, function (error, resultSQL) {
         if(error) {
@@ -47,15 +45,13 @@ exports.newDestination = function(req, res) {
 
 //Modifier une destination de la liste
 exports.editDestination = function(req, res) {
-    let ID_Destination = req.params.ID_Destination
-    let ID_Agency = req.body.ID_Agency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
 
-    let destinations = new Destination(ID_Agency, country, city, days);
+    let destinations = new Destination(country, city, days);
     console.log(destinations);
-    connection.query("UPDATE users.destination SET ? WHERE ID_Destination = ?", [destinations, ID_Destination], function (error, resultSQL) {
+    connection.query("UPDATE users.destination SET ? WHERE ID_Destination = ?", [destinations, req.body.ID_Destination], function (error, resultSQL) {
         if(error) {
             res.status(404).send(error);
         }
