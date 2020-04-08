@@ -1,7 +1,7 @@
 let User = require('../models/user');
 let connection = require('../db');
 
-let User = [];
+//let User = [];
 
 exports.register = function(req, res) {
     console.log("req", req.body);
