@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Modification d'une destination</title>
+        <style></style>
+    </head>
+
+    <body>
+        <h1>Modifier la destination</h1>
+        <form action="/destinations/update/:iddestination" method="GET">
+            Numéro agence:
+            <input type="number" name="idagency" value="<%= idagency %>" ><br>
+            Pays:
+            <input type="text" name="country" value="<%= country %>"><br>
+            Ville:
+            <input type="text" name="city" value="<%= city %>"><br>
+            Jours:
+            <input type="number" name="days" value="<%= days %>"><br>
+
+            <input type="submit" name="validate" value="Valider"><br>
+            <input type="submit" value="Retour à la liste" formaction="/destinations">
+
+        </form>
+    </body>
+
+    <footer></footer>
+
+</html>

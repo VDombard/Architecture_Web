@@ -1,7 +1,7 @@
 let Destination = require('../models/destination');
 let connection = require('../db');
 
-let getDestination = []; //--> 'getDestinations' ou 'destinations' 
+let getDestination = [];
 
 //CRUD - DESTINATION
 
@@ -22,7 +22,7 @@ exports.getDestination = function(req, res) {
 
 //Ajouter une destination
 exports.addDestination = function(req, res) {
-    res.render('destinationsAdd.ejs', {ID_Destination:'-1', ID_Agency:"", country:"", city:"", days:""});
+    res.render('./destinationsAdd.ejs', {iddestination:'-1', idagency:'-1', country:"", city:"", days:""});
 }
 
 //Nouvelle destination
@@ -49,9 +49,9 @@ exports.editDestination = function(req, res) {
     let city = req.body.city;
     let days = req.body.days;
 
-    let destinations = new Destination(country, city, days);
-    console.log(destinations);
-    connection.query("UPDATE users.destination SET ? WHERE ID_Destination = ?", [destinations, req.body.ID_Destination], function (error, resultSQL) {
+    let destinationsUpdate = new Destination(country, city, days);
+    console.log(destinationsUpdate);
+    connection.query("UPDATE users.destination SET ? WHERE iddestination = ?", [destinationsUpdate, req.params.iddestination], function (error, resultSQL) {
         if(error) {
             res.status(404).send(error);
         }
@@ -63,8 +63,8 @@ exports.editDestination = function(req, res) {
 
 // Supprimer une destination suivant un id donné
 exports.deleteDestination = function(req, res) {
-    let sql = "DELETE FROM users.destination WHERE destination.ID_Destination = ?"
-    connection.query(sql, [req.params.ID_Destination], (error, resultSQL) => {
+    let sql = "DELETE FROM users.destination WHERE iddestination = ?"
+    connection.query(sql, [req.params.iddestination], (error, resultSQL) => {
         if(error) {
             res.status(404).send(error); 
         }

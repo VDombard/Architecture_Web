@@ -1,6 +1,4 @@
 var mysql = require('mysql');
-
-//Connection avec ma BDD
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -8,8 +6,11 @@ var connection = mysql.createConnection({
     database: 'users'
 });
 
-connection.connect(function(error) {
-    if (error) throw error;            //throw = lancer
+connection.connect((err) => {
+    if(!err)
+        console.log('DB connection succeded.');
+    else
+        console.log('DB connection failed \n Error :' + JSON.stringify(err, undefined, 2));
 });
 
 module.exports = connection;

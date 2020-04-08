@@ -2,14 +2,19 @@ let express = require('express');
 let router = express.Router();
 
 //import attribut controller
-var loginController = require('./controllers/loginController');
+var login = require('./controllers/loginController');
 var destinationController = require('./controllers/destinationController');
 var destinationApiController = require('./controllers/destinationApiCOntroller');
 
-router.get('/', (req, res) => res.redirect('/login'));
+//LOGIN
+//Route test
+router.get('/api', function(req, res) {
+    res.json({ 'message': 'Welcome'});
+});
 
-router.get('/login', loginController.renderLoginPage);
-
+//Route to handle user registration and login
+router.get('/register', login.register);
+router.get('/login', login.getsignup);
 
 //Routes dédiées au domaine <Destination>
 router.get('/destinations', destinationController.getDestination);

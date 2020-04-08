@@ -1,0 +1,77 @@
+//LOGIN part
+let user = {username:'', password:''};
+let users = [];
+users.push(user);
+
+const logs = (req, res, next) => {
+    console.log(req.sessionID);
+    next();
+};
+
+//Starting using session
+app.use(session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: true
+    })
+);
+
+//Send login form
+app.get('/login, (req, res) => {
+    let username = "";
+    if (req.cookies && req.cookies.username)
+        username = req.cookies.username
+        res.render('login.ejs', {'username' : username});
+});
+
+//Check if authorized
+
+//Login and check user account, set session iduser
+app.get('login', logs, (req, res, next) => {
+    i= 0;
+    users.forEach(user => {
+        if (req.sess)
+    })
+});
+
+//Logout and destroy session
+app.get('/logout', function(req, res) {
+
+});
+
+//Get content endpoint
+app.get('/content', function (req, res) {
+    res.send("You can only see this after you've logged in. <br> <a href=");
+});
+
+//Send sign up form
+app.get('/register', (req, res) => {
+    res.render('register.ejs');
+});
+
+//Save new account
+app.post('/register_save', (req, res) => {
+    console.log(req.body);
+    let user = {
+        username: req.body.username, 
+        password: req.body.password};
+    users.push(user);
+    console.log(users);
+    res.send('user updated');
+});
+
+//Update user
+app.put('/user/:iduser', (req, res) => {
+    let user = {
+        username: req.body.username, 
+        password: req.body.password};
+    users[req.params.iduser] = user;
+    res.send('user updated');
+});
+
+//Delete user
+app.delete('/user/:iduser', (req, res) => {
+    users.splice(req.params.iduser, 1);
+    console.log(users);
+    res.send('user delete');
+});

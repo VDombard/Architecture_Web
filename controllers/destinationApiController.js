@@ -47,7 +47,7 @@ exports.editDestination = function(req, res) {
     let destinations = new Destination(country, city, days);
 
     console.log(destinations);
-    connection.query("UPDATE users.destination SET ? WHERE ID_Destination = ?", [destinations, req.params.ID_Destination], function (error, resultSQL) {
+    connection.query("UPDATE users.destination SET ? WHERE iddestination = ?", [destinations, req.params.iddestination], function (error, resultSQL) {
         if(error) {
             res.status(404).json({'message':error});
         }
@@ -59,8 +59,8 @@ exports.editDestination = function(req, res) {
 
 // Supprimer une destination suivant un id donné
 exports.deleteDestination = function(req, res) {
-    let sql = "DELETE FROM users.destination WHERE destination.ID_Destination = ?";
-    connection.query(sql, [req.params.ID_Destination], (error, resultSQL) => {
+    let sql = "DELETE FROM users.destination WHERE destination.iddestination = ?";
+    connection.query(sql, [req.params.iddestination], (error, resultSQL) => {
         if(error) {
             res.status(404).json({'message':error});
         }

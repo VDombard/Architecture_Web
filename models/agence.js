@@ -1,7 +1,8 @@
-class Agence {
-    constructor(agency_name) {
-        this.agency_name = agency_name;
+class Agency {
+    agencyName = "";
+    constructor(agencyName) {
+        this.agencyName = agencyName;
     }
 };
 
-module.exports = Agence;
+module.exports = Agency;

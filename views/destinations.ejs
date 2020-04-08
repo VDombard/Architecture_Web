@@ -9,16 +9,18 @@
 
     <body> 
 
-        <a href="/destinations/add">Ajouter une destination</a>
         <h1>Liste des destinations</h1>
         <ul> 
             <% for(let i = 0; i < destinations.length; i++) { %>
-            <li><%= destinations[i].ID_Destination %> <%= destinations[i].ID_Agency %> <%= destinations[i].country %> <%= destinations[i].city %>  <%= destinations[i].days %> <br>
-                <a href="/destinations/update/:ID_Destination <%= destinations[i].ID_Destination %>">Modifier</a>
-                <a href="/destinations/delete/:ID_Destination <%= destinations[i].ID_Destination %>">Supprimer</a>
+            <li><%= destinations[i].country %> <%= destinations[i].city %>  <%= destinations[i].days %> <br>
+                <a href="/destinations/update/:iddestination">Modifier</a> <!--:ID_Destination <%= destinations[i].iddestination %>-->
+                <a href="/destinations/delete/:iddestination" <%= destinations[i].iddestination %>> Supprimer</a>
             </li>
             <% } %>
-        </ul>        
+        </ul>  
+        
+        <a href="/destinations/add">Ajouter une destination</a>
+
     </body>
 
     <footer></footer>

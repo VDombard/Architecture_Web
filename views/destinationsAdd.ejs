@@ -9,11 +9,7 @@
 
     <body>
         <h1>Ajouter une destination</h1>
-        <form action="/destinations/new" method="POST">
-            <!--ID_Destination -->
-            <!-- <input type="hidden" name=""> -->
-            Numéro agence:
-            <input type="number" name="ID_Agency" value="<%= ID_Agency %>" ><br>
+        <form action="/destinations/add" method="POST">
             Pays:
             <input type="text" name="country" value="<%= country %>"><br>
             Ville:
