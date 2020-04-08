@@ -20,14 +20,14 @@ router.get('/login', login.getsignup);
 router.get('/destinations', destinationController.getDestination);
 router.get('/destinations/add', destinationController.addDestination);
 router.post('/destinations/new', destinationController.newDestination);
-router.get('/destinations/update/:ID_Destination', destinationController.editDestination);
-router.get('/destinations/delete/:ID_Destination', destinationController.deleteDestination);
+router.get('/destinations/update/:iddestination', destinationController.editDestination);
+router.get('/destinations/delete/:iddestination', destinationController.deleteDestination);
 
 // Routes dédiées au domaine <API Destination>
 router.get('/api/destination', destinationApiController.getDestination);
 router.post('/api/destination', destinationApiController.newDestination);
-router.put('/api/destination/:ID_Destination', destinationApiController.editDestination);
-router.delete('/api/destination/:ID_Destination', destinationApiController.deleteDestination);
+router.put('/api/destination/:iddestination', destinationApiController.editDestination);
+router.delete('/api/destination/:iddestination', destinationApiController.deleteDestination);
 
 
 module.exports = router;

@@ -13,7 +13,7 @@
         <ul> 
             <% for(let i = 0; i < destinations.length; i++) { %>
             <li><%= destinations[i].country %> <%= destinations[i].city %>  <%= destinations[i].days %> <br>
-                <a href="/destinations/update/:iddestination">Modifier</a> <!--:ID_Destination <%= destinations[i].iddestination %>-->
+                <a href="/destinations/update/:iddestination">Modifier</a> <!--:iddestination <%= destinations[i].iddestination %>-->
                 <a href="/destinations/delete/:iddestination" <%= destinations[i].iddestination %>> Supprimer</a>
             </li>
             <% } %>

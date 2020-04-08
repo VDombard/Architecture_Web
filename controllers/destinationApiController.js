@@ -20,7 +20,7 @@ exports.getDestination = function(req, res) {
     });  
 }
 
-//Nouvelle destination //Pas besoin ID_Destination dans la liste car auto-incrément
+//Nouvelle destination //Pas besoin iddestination dans la liste car auto-incrément
 exports.newDestination = function(req, res) {
     let country = req.body.country;
     let city = req.body.city;
