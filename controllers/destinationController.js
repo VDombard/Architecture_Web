@@ -1,9 +1,10 @@
 let Destination = require('../models/destination');
 let connection = require('../db');
 
-let getDestination = [];
+let destination = [];
 
 //CRUD - DESTINATION
+
 
 // Retourne une liste de destinations
 exports.getDestination = function(req, res) {
@@ -13,9 +14,9 @@ exports.getDestination = function(req, res) {
         }
         else {
             res.status(200);
-            getDestination = resultSQL;
-            console.log(getDestination);
-            res.render('./destinations.ejs', {destinations: getDestination});  
+            destination = resultSQL;
+            // console.log(getDestination);
+            res.render('./destinations.ejs', {destinations: destination});  
         }  
     });  
 }
@@ -61,15 +62,48 @@ exports.editDestination = function(req, res) {
     });
 }
 
-// Supprimer une destination suivant un id donné
-exports.deleteDestination = function(req, res) {
-    let sql = "DELETE FROM users.destination WHERE iddestination = ?"
-    connection.query(sql, [req.params.iddestination], (error, resultSQL) => {
-        if(error) {
-            res.status(404).send(error); 
+exports.deleteDestination =  function(req,res){
+    // deleted = '',
+ let deleted =   destination.splice(req.params.iddestination,1)
+//   console.log(deleted)
+//   console.log(destination[0].idagency)
+//   res.render('./destinations.ejs', {destinations: destination});
+     connection.query("DELETE  FROM users.assoc_util_dest where FK_Destination=? ",[deleted[0].iddestination], function (error, resultSQL) {
+        if (error) {
+            res.status(404).send(error);
         }
         else {
-            res.redirect('/destinations');
-        }
+            connection.query("DELETE  FROM users.destination where iddestination =? AND idagency",[deleted[0].iddestination, deleted[0].idagency], function (error, resultSQL) {
+                if (error) {
+                    res.status(404).send(error);
+                }
+                res.status(200);
+            console.log(resultSQL)
+            // console.log(getDestination);
+            res.redirect('/destinations');  
+            });   
+            
+        }  
     });
-};
+
+
+    //  console.log(deleted)
+    //  res.render('./destinations.ejs', {destinations: getDestination});  
+}
+
+// Supprimer une destination suivant un id donné
+// exports.deleteDestination = function(req, res) {
+//     console.log("je suis la")
+//     res.redirect('/destinations');
+//     // console.log(req.params.iddestination)
+//     // console.log(getDestination)
+//     // let sql = "DELETE FROM users.destination WHERE iddestination = ?"
+//     // connection.query(sql, [req.params.iddestination], (error, resultSQL) => {
+//     //     if(error) {
+//     //         res.status(404).send(error); 
+//     //     }
+//     //     else {
+//     //         res.redirect('/destinations');
+//     //     }
+//     // });
+// };
