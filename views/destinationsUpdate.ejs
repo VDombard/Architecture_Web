@@ -9,7 +9,8 @@
 
     <body>
         <h1>Modifier la destination</h1>
-        <form action="/destinations/update/:iddestination" method="GET">
+        <form action="/updatedest" method="POST">
+            <input type="hidden" name="iddestination" value="<%= iddestination %>" ><br>
             Numéro agence:
             <input type="number" name="idagency" value="<%= idagency %>" ><br>
             Pays:

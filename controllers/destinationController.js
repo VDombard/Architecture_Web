@@ -46,18 +46,34 @@ exports.newDestination = function(req, res) {
 
 //Modifier une destination de la liste
 exports.editDestination = function(req, res) {
+    let iddestination = req.body.iddestination;
+    let idagency = req.body.idagency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
 
-    let destinationsUpdate = new Destination(country, city, days);
+    let destinationsUpdate = new Destination(iddestination, idagency, country, city, days);
     console.log(destinationsUpdate);
-    connection.query("UPDATE users.destination SET ? WHERE iddestination = ?", [destinationsUpdate, req.params.iddestination], function (error, resultSQL) {
+    connection.query("UPDATE users.destination SET ? WHERE iddestination = ?", [destinationsUpdate, iddestination], function (error, resultSQL) {
         if(error) {
             res.status(404).send(error);
         }
         else {
             res.redirect('/destinations');
+        }
+    });
+}
+
+exports.destFormUpdate = function (request, response) {
+    let iddestination = request.params.iddestination;
+    connection.query("Select * from users.destination WHERE iddestination = ?", iddestination ,function (error, resultSQL) {
+        if (error)  {
+            response.status(400).send(error);
+        }
+        else {
+            response.status(200);
+            destination = resultSQL;
+            response.render('destinationsUpdate.ejs', {iddestination:destination[0].iddestination, idagency:destination[0].idagency, country:destination[0].country, city:destination[0].city, days:destination[0].days});
         }
     });
 }

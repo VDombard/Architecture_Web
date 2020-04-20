@@ -20,7 +20,8 @@ router.get('/login', login.getsignup);
 router.get('/destinations', destinationController.getDestination);
 router.get('/destinations/add', destinationController.addDestination);
 router.post('/destinations/new', destinationController.newDestination);
-router.get('/destinations/update/:iddestination', destinationController.editDestination);
+router.get('/destinations/:iddestination', destinationController.destFormUpdate);
+router.post('/updatedest', destinationController.editDestination)
 router.get('/destinations/delete/:iddestination', destinationController.deleteDestination);
 
 // Routes dédiées au domaine <API Destination>
