@@ -20,29 +20,32 @@ exports.getDestination = function(req, res) {
         }  
     });  
 }
-
 //Ajouter une destination
 exports.addDestination = function(req, res) {
-    res.render('./destinationsAdd.ejs', {iddestination:'-1', idagency:'-1', country:"", city:"", days:""});
+    res.render('destinationsAdd.ejs', {iddestination:"", idagency:"", country:"", city:"", days:""});
 }
 
 //Nouvelle destination
 exports.newDestination = function(req, res) {
+    let iddestination = req.body.iddestination;
+    let idagency = req.body.idagency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
+
+    //let sess = req.session.iduser
     
-    let destinations = new Destination(country, city, days);
-    console.log(destinations);
-    connection.query("INSERT INTO users.destination set ?", destinations, function (error, resultSQL) {
+    let destinationsAdd = new Destination(iddestination, idagency, country, city, days);
+    console.log(destinationsAdd);
+    connection.query("INSERT INTO users.destination set ?", destinationsAdd, function (error, resultSQL) {
         if(error) {
             res.status(404).send(error);
         }
         else {
             res.status(200).redirect('/destinations');
         }
-    });
-}
+    })
+};
 
 //Modifier une destination de la liste
 exports.editDestination = function(req, res) {
@@ -111,15 +114,15 @@ exports.deleteDestination =  function(req,res){
 // exports.deleteDestination = function(req, res) {
 //     console.log("je suis la")
 //     res.redirect('/destinations');
-//     // console.log(req.params.iddestination)
-//     // console.log(getDestination)
-//     // let sql = "DELETE FROM users.destination WHERE iddestination = ?"
-//     // connection.query(sql, [req.params.iddestination], (error, resultSQL) => {
-//     //     if(error) {
-//     //         res.status(404).send(error); 
-//     //     }
-//     //     else {
-//     //         res.redirect('/destinations');
-//     //     }
-//     // });
-// };
+//      console.log(req.params.iddestination)
+//      console.log(getDestination)
+//      let sql = "DELETE FROM users.destination WHERE iddestination = ?"
+//      connection.query(sql, [req.params.iddestination], (error, resultSQL) => {
+//          if(error) {
+//              res.status(404).send(error); 
+//          }
+//          else {
+//              res.redirect('/destinations');
+//          }
+//      });
+// }

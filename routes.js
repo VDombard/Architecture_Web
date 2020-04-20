@@ -18,8 +18,8 @@ router.get('/login', login.getsignup);
 
 //Routes dédiées au domaine <Destination>
 router.get('/destinations', destinationController.getDestination);
-router.get('/destinations/add', destinationController.addDestination);
-router.post('/destinations/new', destinationController.newDestination);
+router.get('/adddestination', destinationController.addDestination);
+router.post('/newdestination', destinationController.newDestination);
 router.get('/destinations/:iddestination', destinationController.destFormUpdate);
 router.post('/updatedest', destinationController.editDestination)
 router.get('/destinations/delete/:iddestination', destinationController.deleteDestination);
