@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Ajout d'une agence de voyage</title>
+        <style></style>
+    </head>
+
+    <body>
+        <h1>Ajouter une agences de voyage</h1>
+        <form action="/newagence" method="POST">
+            Numéro id agence:
+            <input type="number" name="idagency" value="<%= idagency %>"> <br>
+            Nom agence:
+            <input type="text" name="agencyName" value="<%= agencyName %>"><br>
+
+            <input type="submit" name="validate" value="Valider"><br>
+            <input type="submit" value="Retour à la liste" formaction="/agences">
+
+        </form>
+    </body>
+
+    <footer></footer>
+
+</html>

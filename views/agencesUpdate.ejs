@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Modification du nom d'une agence</title>
+        <style></style>
+    </head>
+
+    <body>
+        <h1>Modifier le nom de l'agence</h1>
+        <form action="/updateagency" method="POST">
+            <input type="hidden" name="idagency" value="<%= idagency %>" ><br>
+            Nom agence:
+            <input type="text" name="agencyName" value="<%= agencyName %>" ><br>
+
+            <input type="submit" name="validate" value="Valider"><br>
+            <input type="submit" value="Retour à la liste" formaction="/agences">
+
+        </form>
+    </body>
+
+    <footer></footer>
+
+</html>

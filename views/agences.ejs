@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agences</title>
+        <style>
+            
+        </style>
+    </head>
+
+    <body> 
+
+        <h1>Liste des agences</h1>
+        <ul> 
+            <% for(let i = 0; i < agences.length; i++) { %>
+            <li><%= agences[i].agencyName %> <br>
+                <a href="/agences/<%= agences[i].idagency %>">Modifier</a>
+                <a href="/agences/delete/ <%= i %>"> Supprimer</a>
+            </li>
+            <% } %> 
+        </ul>  
+        
+        <a href="/addagence">Ajouter une agences de voyage</a>
+
+    </body>
+
+    <footer></footer>
+</html>

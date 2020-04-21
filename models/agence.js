@@ -1,6 +1,8 @@
 class Agency {
+    idagency = "";
     agencyName = "";
-    constructor(agencyName) {
+    constructor(idagency, agencyName) {
+        this.idagency = idagency;
         this.agencyName = agencyName;
     }
 };
