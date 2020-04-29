@@ -9,32 +9,24 @@ app.use(bodyParser.json());
 app.use(session({
     secret: 'my secret',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
     })
 );
 
-//Login
-//app.use(function(req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//    next();
-//});
+//Route home page
+app.get('/', (req, res) => {
+    res.render('login.ejs');
+});
 
-//CORS allowed - headers
-app.all('/*', function(req, res, next) {
 
-    res.header("Access-Control-Allow-Origin",
-    "*"); // restrict it to the required domain
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-    if (req.method == 'OPTIONS') {
-        res.status(200).end();
-    } else { next(); }
-    });
-
+// gestion d'une route inconnue
+app.use(function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.status(400).send('Page introuvable !');
+});
 // injection des routes
 let router = require('./routes');
-app.use('/', router); //--> app.use('/api, router);
+app.use('/', router);
 
 // definition du port de lancement
 let port = process.env.PORT || 8080;
@@ -44,10 +36,5 @@ app.listen(port, function() {
     console.log("Server running on port: " + port);
 });
 
-// gestion d'une route inconnue
-app.use(function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.status(400).send('Page introuvable !');
-});
 
 module.exports = app;

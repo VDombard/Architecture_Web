@@ -1,11 +1,21 @@
 let Destination = require('../models/destination');
 let connection = require('../db');
-
 let destination = [];
 
 //CRUD - DESTINATION
 
-
+exports.userHome = function (req, res) {
+    connection.query("SELECT FK_Destination, FK_Utilisateur, iddestination, country, city, days FROM users.assoc_util_dest ass inner join users.destination dest on ass.FK_Destination = dest.iddestination where  ass.FK_Utilisateur=?", req.session.iduser, (err, resultSQL) => {
+        if (error) {
+            res.status(400).send(error);
+        }
+        else {
+             res.status(200)
+             destination=resultsQL;
+            res.render('userHome.ejs', {destinations: destination});
+        }
+    });
+}
 // Retourne une liste de destinations
 exports.getDestination = function(req, res) {
     connection.query("SELECT * FROM users.destination", function (error, resultSQL) {

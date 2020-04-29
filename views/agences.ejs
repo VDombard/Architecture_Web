@@ -14,7 +14,6 @@
             <% for(let i = 0; i < agences.length; i++) { %>
             <li><%= agences[i].agencyName %> <br>
                 <a href="/agences/<%= agences[i].idagency %>">Modifier</a>
-                <a href="/agences/delete/ <%= i %>"> Supprimer</a>
             </li>
             <% } %> 
         </ul>  

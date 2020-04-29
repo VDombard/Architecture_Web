@@ -7,18 +7,14 @@ let agence = [];
 exports.getAgence = function(req, res) {
     connection.query("SELECT * FROM users.agency", function (error, resultSQL) {
         if (error) {
-            res.status(404).send(error);
+            res.status(404).json({'message':error});
         }
         else {
             res.status(200);
             agence = resultSQL;
-            res.render('agences.ejs', {agences: agence});  
+            res.json({agences: agence});  
         }  
     });  
-}
-//Ajouter une destination
-exports.addAgence = function(req, res) {
-    res.render('agencesAdd.ejs', {idagency:"", agencyName:""});
 }
 
 //Nouvelle destination
@@ -31,10 +27,10 @@ exports.newAgence = function(req, res) {
     console.log(agencesAdd);
     connection.query("INSERT INTO users.agency set ?", agencesAdd, function (error, resultSQL) {
         if(error) {
-            res.status(404).send(error);
+            res.status(404).json({'message':error});
         }
         else {
-            res.status(200).redirect('/agences');
+            res.status(200).json({'message':'OK'});
         }
     })
 };
@@ -48,24 +44,10 @@ exports.editAgence = function(req, res) {
     console.log(agencesUpdate);
     connection.query("UPDATE users.agency SET ? WHERE idagency = ?", [agencesUpdate, idagency], function (error, resultSQL) {
         if(error) {
-            res.status(404).send(error);
+            res.status(404).json({'message':error});
         }
         else {
-            res.redirect('/agences');
-        }
-    });
-}
-
-exports.agenceFormUpdate = function (request, response) {
-    let idagency = request.params.idagency;
-    connection.query("Select * from users.agency WHERE idagency = ?", idagency ,function (error, resultSQL) {
-        if (error)  {
-            response.status(400).send(error);
-        }
-        else {
-            response.status(200);
-            agence = resultSQL;
-            response.render('agencesUpdate.ejs', {idagency:agence[0].idagency, agencyName:agence[0].agencyName});
+            res.json({'message':'OK'});
         }
     });
 }

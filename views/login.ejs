@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+       <title>Formulaire de login</title>
+       <style>
+
+       </style>
+   </head>
+   
+   <body>
+            <h1>Login</h1>
+			<form action="/login" method="POST">
+				
+				Email : 
+				<input type="text" name="email" > <br>
+				
+				Password : 
+				<input type="text" name="password"> <br> 
+                <!--Pas de value pour password car si le mot de pass est enregistré dans les cookies et qu'un malveillant vient espionner les cookies, il peut hacker le mot de passe-->
+				<button type="submit" name="Login" value="Login">login</button><br><br>
+			</form>
+			<a href="/register"> Register </a>
+				
+   </body>
+
+   <footer></footer>
+</html>

@@ -22,13 +22,15 @@ exports.getDestination = function(req, res) {
 
 //Nouvelle destination //Pas besoin iddestination dans la liste car auto-incrément
 exports.newDestination = function(req, res) {
+    let iddestination = req.body.iddestination;
+    let idagency = req.body.idagency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
     
-    let destinations = new Destination(country, city, days);
-    console.log(destinations);
-    connection.query("INSERT INTO users.destination SET ?", destinations, function (error, resultSQL) {
+    let destinationsAdd = new Destination(iddestination, idagency, country, city, days);
+    console.log(destinationsAdd);
+    connection.query("INSERT INTO users.destination SET ?", destinationsAdd, function (error, resultSQL) {
         if(error) {
             res.status(404).json({'message':error});
         }
@@ -40,14 +42,16 @@ exports.newDestination = function(req, res) {
 
 //Modifier une destination de la liste
 exports.editDestination = function(req, res) {
+    let iddestination = req.body.iddestination;
+    let idagency = req.body.idagency;
     let country = req.body.country;
     let city = req.body.city;
     let days = req.body.days;
 
-    let destinations = new Destination(country, city, days);
+    let destinationsUpdate = new Destination(iddestination, idagency, country, city, days);
 
-    console.log(destinations);
-    connection.query("UPDATE users.destination SET ? WHERE iddestination = ?", [destinations, req.params.iddestination], function (error, resultSQL) {
+    console.log(destinationsUpdate);
+    connection.query("UPDATE users.destination SET ? WHERE iddestination = ?", [destinationsUpdate, req.params.iddestination], function (error, resultSQL) {
         if(error) {
             res.status(404).json({'message':error});
         }
